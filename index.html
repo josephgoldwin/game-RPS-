@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors - 3 Player Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .container{
+          background-color: orange;
+          display:flex;
+          justify-content:space-evenly;
+          flex-wrap: wrap;
+        }
+         button{
+           font-size:25px;
+           width:200px;
+           height:70px;
+           background-color:yellow;
+           margin-top:20px;
+         }
+         hr{
+           margin-top:20px;
+         }
+         .h1{
+            background-color: aqua;
+             color:white;
+             text-align: center;
+            
+         }
+         img{
+           width:150px;
+         }
+         select{
+            width:200px;
+            height: 50px;
+            background-color: aqua;
+            font-size: 20px;
+            margin-left: 100px;
+            
+         }
+         select:hover{
+            cursor: pointer;
+            
+         }
+         #result{
+            text-align: center;
+            background-color: green;
+            color: white;
+            font-size: 40px;
+         }
+            button{
+                margin-left: 700px;
+            }
+
+         </style>
+       </head>
+       <body>
+        <h1 class="h1">Rock, Paper, Scissors - 3 Player Game</h1>
+         <hr>
+         <div class="container">
+           
+        <div>
+           <h1>Player-1: <img src="img/kamali.jfif" alt="kamali"></h1>
+           <select id="player1">
+            <option value="rock">Rock</option>
+            <option value="paper">Paper</option>
+            <option value="scissors">Scissors</option>
+        </select>
+    </div>
+    <div>
+           <h1>Player-2: <img src="img/durka.jfif" alt="durka"></h1>
+           <select id="player2">
+            <option value="rock">Rock</option>
+            <option value="paper">Paper</option>
+            <option value="scissors">Scissors</option>
+        </select>
+        
+    </div>
+    <div>
+         <h1>Player-3: <img src="img/goldwin.jfif" alt="gold" style="height:163px;"></h1>
+            <select id="player3">
+                <option value="rock">Rock</option>
+                <option value="paper">Paper</option>
+                <option value="scissors">Scissors</option>
+            </select>
+           
+        </div>
+       
+        
+    </div>
+    <button onclick="showResult()">Play Game</button>
+    
+        <h1 id="result"></h1>
+        
+    <script>
+
+        function playGame(player1, player2, player3) {
+            function getWinner(choice1, choice2) {
+                switch (choice1) {
+                    case "rock":
+                        return choice2 === "scissors" ? "win" : choice2 === "paper" ? "lose" : "draw";
+                    case "paper":
+                        return choice2 === "rock" ? "win" : choice2 === "scissors" ? "lose" : "draw";
+                    case "scissors":
+                        return choice2 === "paper" ? "win" : choice2 === "rock" ? "lose" : "draw";
+                    default:
+                        return "invalid";
+                }
+            }
+        
+            let result1 = getWinner(player1, player2);
+            let result2 = getWinner(player1, player3);
+            let result3 = getWinner(player2, player3);
+        
+            switch (true) {
+                case result1 === "win" && result2 === "win":
+                    return "Player-1 Kamali Wins!";
+                case result1 === "lose" && result3 === "win":
+                    return "Player-2 Durka Wins!";
+                case result2 === "lose" && result3 === "lose":
+                    return "Player-3 Goldwin Wins!";
+                case result1 === "draw" && result2 === "draw" && result3 === "draw":
+                    return "It's a draw!";
+                default:
+                    return "It's a tie or invalid input!";
+            }
+        }
+        
+        // Function to display the result in the HTML
+        function showResult() {
+            let player1 = document.getElementById("player1").value;
+            let player2 = document.getElementById("player2").value;
+            let player3 = document.getElementById("player3").value;
+            
+            let result = playGame(player1, player2, player3);
+            document.getElementById("result").textContent = result;
+        }
+        
+    </script>
+</body>
+</html>
